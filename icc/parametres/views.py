@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from .forms import SalonForm
 from .models import Parametres
 
-
+#f
 def gererSalon(request):
     return render(request, '../templates/gererSalon.html')
 
