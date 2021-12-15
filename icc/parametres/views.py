@@ -1,4 +1,5 @@
 # Dorian Châtelain
+from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -9,7 +10,7 @@ from .models import Parametres
 def gererSalon(request):
     return render(request, '../templates/gererSalon.html')
 
-
+@staff_member_required
 def modifier_salon(request, pk):
     if request.method == 'POST':
         pi = Parametres.objects.get(id=pk)
@@ -21,3 +22,4 @@ def modifier_salon(request, pk):
         pi = Parametres.objects.get(id=pk)
         fm = SalonForm(instance=pi)
     return render(request, '../templates/modifier_salon.html', {'form': fm})
+
