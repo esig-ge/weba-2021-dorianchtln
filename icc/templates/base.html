@@ -93,7 +93,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{% url "quitter" %}">Déconnexion</a></li>
+                            <li><a class="dropdown-item" href="{% url 'quitter' %}">Déconnexion</a></li>
                         </ul>
 
                     {% elif request.user.is_authenticated and user.is_staff %}
@@ -103,7 +103,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{% url "quitter" %}">Déconnexion</a></li>
+                            <li><a class="dropdown-item" href="{% url 'quitter' %}">Déconnexion</a></li>
                         </ul>
 
                     {% else %}
@@ -115,14 +115,18 @@
                         <script>
                             var divMenu = document.getElementById("menu-test")
                             var li = document.createElement('li')
-                            li.innerHTML = 'nouveau-li';
+                            var li2 = document.createElement('li')
+                            li.innerHTML = 'nouveau-test';
+                            li2.innerHTML = 'nouveau-test2';
                             var afficher = function () {
                                 {#document.body.setAttribute("style", "background-color:green")#}
                                 document.getElementById('menu-test').appendChild(li)
+                                document.getElementById('menu-test').appendChild(li2)
                             }
                             var cacher = function () {
                                 document.body.setAttribute("style", "background-color:hsl(0, 0%, 98%);")
                                 document.getElementById('menu-test').removeChild(li);
+                                document.getElementById('menu-test').removeChild(li2)
                             }
                             divMenu.addEventListener('mouseover', afficher);
                             divMenu.addEventListener('mouseout', cacher, false)
