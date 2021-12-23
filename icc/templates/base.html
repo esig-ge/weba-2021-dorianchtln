@@ -39,7 +39,7 @@
     <title>{% block title %}Accueil{% endblock %}</title>
 </head>
 <body style="width: 100%; height: 100%;">
-<nav class="navbar navbar-expand-sm w-100 py-2 navbar-dark" style="background-color: #3d3d3f">
+<nav id="navbar" class="navbar navbar-expand-sm w-100 py-2 navbar-dark" style="background-color: #3d3d3f">
     <div class="container-fluid">
         <a href="{% url 'accueil' %}">
             <img src="{% static 'media/logo.jpg' %}" class="img-fluid w-auto" alt="logo"/>
@@ -68,7 +68,8 @@
                        href="{% url 'contact' %}">Contact</a>
                 </li>
 
-                <li id="menu-test" class="nav-item"><a href="#" class="nav-link" style="color: #7FFFD4; font-size: 25px;">Menu Js test</a>
+                <li id="menu-test" class="nav-item"><a href="#" class="nav-link"
+                                                       style="color: #7FFFD4; font-size: 25px;">Menu Js test</a>
                 </li>
 
                 <li class="nav-item dropdown ms-lg-auto">
@@ -115,21 +116,46 @@
                         <script>
                             var divMenu = document.getElementById("menu-test")
                             var li = document.createElement('li')
+                            var a = document.createElement('a')
+                            var a2 = document.createElement('a')
                             var li2 = document.createElement('li')
-                            li.innerHTML = 'Connexion';
-                            li2.innerHTML = 'Déconnexion';
+
+
+                            a.innerHTML = 'Connexion';
+                            li.setAttribute("class", "bg-white")
+                            li.setAttribute("href", "#")
+                            li.setAttribute("class", "bg-white")
+
+                            a2.innerHTML = 'Déconnexion';
+                            li2.setAttribute("class", "bg-white")
+
                             var afficher = function () {
-                                {#document.body.setAttribute("style", "background-color:green")#}
-                                document.getElementById('menu-test').appendChild(li)
-                                document.getElementById('menu-test').appendChild(li2)
+                                divMenu.appendChild(li)
+                                li.appendChild(a)
+                                divMenu.appendChild(li2)
+                                li2.appendChild(a2)
                             }
+
                             var cacher = function () {
-                                document.body.setAttribute("style", "background-color:hsl(0, 0%, 98%);")
-                                document.getElementById('menu-test').removeChild(li);
-                                document.getElementById('menu-test').removeChild(li2)
+
+                                li.removeChild(a)
+                                divMenu.removeChild(li);
+                                li2.removeChild(a2)
+                                divMenu.removeChild(li2)
                             }
-                            divMenu.addEventListener('mouseover', afficher);
-                            divMenu.addEventListener('mouseout', cacher, false)
+
+                            function onMouseOut(event) {
+                                //this is the original element the event handler was assigned to
+                                var e = event.toElement || event.relatedTarget;
+                                if (e.parentNode === this || e === this) {
+                                    return;
+                                }
+                                cacher()
+                                // handle mouse event here!
+                            }
+
+                            divMenu.addEventListener('mouseenter', afficher);
+                            {#divMenu.addEventListener('mouseout', onMouseOut);#}
                         </script>
                     {% endif %}
                 </li>
