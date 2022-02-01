@@ -8,6 +8,7 @@ from django.contrib import admin
 urlpatterns = [
     path('inscription', views.inscriptionPage, name='inscription'),
     path('acces', views.accesPage, name='acces'),
+    path('connexionjs', views.connexionjs, name='connexionjs'),
     path('quitter', views.logoutUser, name='quitter'),
     path('gererClients/', views.gererClient, name='gererClient'),
     path('supprimer_client/<str:pk>', views.supprimer_client, name='supprimer_client'),

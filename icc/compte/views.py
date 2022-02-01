@@ -93,3 +93,7 @@ def profile(request):
         'form': form,
     }
     return render(request, '../templates/profile.html', context)
+
+
+def connexionjs(request):
+    return render(request, '../templates/connexionjs.html')

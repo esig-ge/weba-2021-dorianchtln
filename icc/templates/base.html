@@ -108,55 +108,56 @@
                         </ul>
 
                     {% else %}
-                        {#                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">#}
-                        {#                            <li><a class="dropdown-item" href="{% url 'acces' %}">Connexion</a></li>#}
-                        {#                            <li><a class="dropdown-item" href="{% url 'inscription' %}">Inscription</a></li>#}
-                        {#                        </ul>#}
+                                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <li><a class="dropdown-item" href="{% url 'acces' %}">Connexion</a></li>
+                                                    <li><a class="dropdown-item" href="{% url 'inscription' %}">Inscription</a></li>
+                                                    <li><a class="dropdown-item" href="{% url 'connexionjs' %}">Connexion JS</a></li>
+                                                </ul>
 
-                        <script>
-                            var divMenu = document.getElementById("menu-test")
-                            var li = document.createElement('li')
-                            var a = document.createElement('a')
-                            var a2 = document.createElement('a')
-                            var li2 = document.createElement('li')
-
-
-                            a.innerHTML = 'Connexion';
-                            li.setAttribute("class", "bg-white")
-                            li.setAttribute("href", "#")
-                            li.setAttribute("class", "bg-white")
-
-                            a2.innerHTML = 'Déconnexion';
-                            li2.setAttribute("class", "bg-white")
-
-                            var afficher = function () {
-                                divMenu.appendChild(li)
-                                li.appendChild(a)
-                                divMenu.appendChild(li2)
-                                li2.appendChild(a2)
-                            }
-
-                            var cacher = function () {
-
-                                li.removeChild(a)
-                                divMenu.removeChild(li);
-                                li2.removeChild(a2)
-                                divMenu.removeChild(li2)
-                            }
-
-                            function onMouseOut(event) {
-                                //this is the original element the event handler was assigned to
-                                var e = event.toElement || event.relatedTarget;
-                                if (e.parentNode === this || e === this) {
-                                    return;
-                                }
-                                cacher()
-                                // handle mouse event here!
-                            }
-
-                            divMenu.addEventListener('mouseenter', afficher);
+{#                        <script>#}
+{#                            var divMenu = document.getElementById("menu-test")#}
+{#                            var li = document.createElement('li')#}
+{#                            var a = document.createElement('a')#}
+{#                            var a2 = document.createElement('a')#}
+{#                            var li2 = document.createElement('li')#}
+{##}
+{##}
+{#                            a.innerHTML = 'Connexion';#}
+{#                            li.setAttribute("class", "bg-white")#}
+{#                            li.setAttribute("href", "#")#}
+{#                            li.setAttribute("class", "bg-white")#}
+{##}
+{#                            a2.innerHTML = 'Déconnexion';#}
+{#                            li2.setAttribute("class", "bg-white")#}
+{##}
+{#                            var afficher = function () {#}
+{#                                divMenu.appendChild(li)#}
+{#                                li.appendChild(a)#}
+{#                                divMenu.appendChild(li2)#}
+{#                                li2.appendChild(a2)#}
+{#                            }#}
+{##}
+{#                            var cacher = function () {#}
+{##}
+{#                                li.removeChild(a)#}
+{#                                divMenu.removeChild(li);#}
+{#                                li2.removeChild(a2)#}
+{#                                divMenu.removeChild(li2)#}
+{#                            }#}
+{##}
+{#                            function onMouseOut(event) {#}
+{#                                //this is the original element the event handler was assigned to#}
+{#                                var e = event.toElement || event.relatedTarget;#}
+{#                                if (e.parentNode === this || e === this) {#}
+{#                                    return;#}
+{#                                }#}
+{#                                cacher()#}
+{#                                // handle mouse event here!#}
+{#                            }#}
+{##}
+{#                            divMenu.addEventListener('mouseenter', afficher);#}
                             {#divMenu.addEventListener('mouseout', onMouseOut);#}
-                        </script>
+{#                        </script>#}
                     {% endif %}
                 </li>
             </ul>
