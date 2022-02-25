@@ -46,8 +46,6 @@
                      console.log(xhr.response['produits'][i])
                      console.log('ID: ' + xhr.response['produits'][i]['f'])
 
-                     {#var url = href='{% url 'produits:modifier_produit' + xhr.response['produits'][i].id  %}'#}
-
                      ProduitsDiv.innerHTML += '<th>' + xhr.response['produits'][i].nom + '</th>'
                                             + '<th>' + xhr.response['produits'][i].type + '</th>'
                                             + '<th>' + xhr.response['produits'][i].capacite + '</th>'
@@ -75,10 +73,8 @@
                      sup.setAttribute('href', '/produits/supprimer_produit/'  + xhr.response['produits'][i].id)
                      moddiv.appendChild(mod)
                      supdiv.appendChild(sup)
-
                  }
              }
-
              xhr.send()
             }
     onstart()
