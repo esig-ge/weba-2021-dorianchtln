@@ -46,6 +46,21 @@ class Produit(models.Model):
     prix_vente = models.DecimalField(decimal_places=2, max_digits=5) #centimes
     statut = models.CharField(max_length=250)
     quantite = models.IntegerField()
+    def serialize(self):
+
+        cli = {
+            "id" : self.id,
+            "nom" : self.nom,
+            "type": self.type,
+            "categorie": self.categorie,
+            "image": str(self.image),
+            "capacite": self.capacite,
+            "prix_achat": self.prix_achat,
+            "prix_vente": self.prix_vente,
+            "statut": self.statut,
+            "quantite": self.quantite,
+        }
+        return cli
 
     def get_absolute_url(self):
         return reverse('index', args=[str(self.id)])

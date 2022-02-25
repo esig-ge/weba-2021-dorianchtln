@@ -1,4 +1,6 @@
 # Zumeri Faton et Châtelain Dorian
+import time
+
 import stripe
 from django.shortcuts import render, redirect
 from .forms import ProduitForm
@@ -7,6 +9,7 @@ from django.views import View
 from commande.models import *
 from django.http import JsonResponse
 import json
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -69,6 +72,15 @@ def gererProduit(request):
     produits = Produit.objects.all()
     return render(request, '../templates/gererProduit.html', {'produits': produits})
 
+
+def ajax(request):
+    produitsTout = Produit.objects.all()
+    dict = {}
+    produits = []
+    for pro in produitsTout:
+        produits.append(pro.serialize())
+    dict['produits'] = produits
+    return JsonResponse(dict)
 
 def ajouter_produit(request):
     if request.method == "POST":

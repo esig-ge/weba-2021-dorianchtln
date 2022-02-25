@@ -25,25 +25,63 @@
                 <th>Mise à Jour</th>
                 <th>Supprimer</th>
             </tr>
-            {% for n in produits %}
-                <tr>
-                    <th><p>{{ n.nom }}</p></th>
-                    <th><p>{{ n.type }}</p></th>
-                    <th><p>{{ n.capacite }}</p></th>
-                    <th><p>{{ n.categorie }}</p></th>
-                    <th><p>CHF {{ n.prix_achat }}</p></th>
-                    <th><p>CHF {{ n.prix_vente }}</p></th>
-                    <th><p>{{ n.statut }}</p></th>
-                    <th><p>{{ n.quantite }}</p></th>
-                    <th><a class='btn btn-sm btn-dark' href="{% url 'produits:modifier_produit' n.id %}">Modifier</a>
-                    </th>
-                    <th><a class='btn btn-sm btn-danger'
-                           href="{% url 'produits:supprimer_produit' n.id %}">Supprimer</a></th>
-                </tr>
-            {% endfor %}
 
+     <tbody id="idDiv">
+     </tbody>
         </table>
     </div>
-    </div>
+
+    <script>
+        var ProduitsDiv = document.getElementById("idDiv")
+        function onstart(){
+            const xhr = new XMLHttpRequest();
+             const url = '/produits/ajax'
+             xhr.responseType = 'json';
+             xhr.open('GET', url, true);
+             {#var response = JSON.parse(xhr.responseText)#}
+             xhr.onload = function () {
+                 console.log(xhr.response['produits'])
+
+                 for (let i = 0; i < xhr.response['produits'].length; i++) {
+                     console.log(xhr.response['produits'][i])
+                     console.log('ID: ' + xhr.response['produits'][i]['f'])
+
+                     {#var url = href='{% url 'produits:modifier_produit' + xhr.response['produits'][i].id  %}'#}
+
+                     ProduitsDiv.innerHTML += '<th>' + xhr.response['produits'][i].nom + '</th>'
+                                            + '<th>' + xhr.response['produits'][i].type + '</th>'
+                                            + '<th>' + xhr.response['produits'][i].capacite + '</th>'
+                                            + '<th>' + xhr.response['produits'][i].categorie + '</th>'
+                                            + '<th>' + xhr.response['produits'][i].prix_achat + '</th>'
+                                            + '<th>' + xhr.response['produits'][i].prix_vente + '</th>'
+                                            + '<th>' + xhr.response['produits'][i].statut + '</th>'
+                                            + '<th>' + xhr.response['produits'][i].quantite + '</th>'
+                                            + "<th id='modifier'>"
+                                            + "</th>"
+                                            + "<th id='supprimer'>"
+                                            + "</th>"
+
+                     var moddiv = document.getElementById('modifier')
+                     var supdiv = document.getElementById('supprimer')
+                     var mod = document.createElement('a')
+                     var sup = document.createElement('a')
+                     mod.setAttribute('class','btn btn-sm btn-dark')
+                     mod.setAttribute('href', '/produits/modifier_produit/'  + xhr.response['produits'][i].id)
+                     mod.innerHTML = 'Modifier'
+
+                     sup.setAttribute('class','btn btn-sm btn-danger')
+                     sup.innerHTML = 'Modifier'
+
+                     sup.setAttribute('href', '/produits/supprimer_produit/'  + xhr.response['produits'][i].id)
+                     moddiv.appendChild(mod)
+                     supdiv.appendChild(sup)
+
+                 }
+             }
+
+             xhr.send()
+            }
+    onstart()
+    </script>
 
 {% endblock %}
