@@ -80,7 +80,7 @@ def ajax(request):
     for pro in produitsTout:
         produits.append(pro.serialize())
     dict['produits'] = produits
-    # time.sleep(3)
+    time.sleep(3)
     return JsonResponse(dict)
 
 def ajouter_produit(request):
